@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <settings>
   <default apply-to="setup-cleanup">
-    <connectionString>Data Source=.\SQL2016;Initial Catalog=aspnetdb;Integrated Security=True</connectionString>
+    <connectionString>Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True</connectionString>
   </default>
   <default apply-to="system-under-test">
-    <connectionString>Data Source=.\SQL2016;Initial Catalog=aspnetdb;Integrated Security=True</connectionString>
+    <connectionString>Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True</connectionString>
   </default>
   <default apply-to="assert">
-    <connectionString>Data Source=.\SQL2016;Initial Catalog=aspnetdb;Integrated Security=True</connectionString>
+    <connectionString>Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True</connectionString>
   </default>
 </settings>
