@@ -17,6 +17,8 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -67,14 +69,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Tests.nunit">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TestrunnerHelper\TestrunnerHelper.csproj">
       <Project>{74b3b592-11f3-493c-9a58-92837daacb68}</Project>
       <Name>TestrunnerHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestRunnerNbiTests\TestrunnerNbiTests.csproj">
+      <Project>{0a4d0d47-1380-4716-9a48-4296e6ae7d3a}</Project>
+      <Name>TestrunnerNbiTests</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -61,5 +61,19 @@
         </equalTo>
       </assert>
     </test>
+    <test name="SimpleDemoTestError">
+      <description>1 always isnt equal 3</description>
+      <category>Demo</category>
+      <system-under-test>
+        <execution>
+          <query>SELECT 1</query>
+        </execution>
+      </system-under-test>
+      <assert>
+        <equalTo>
+          <query>SELECT 3</query>
+        </equalTo>
+      </assert>
+    </test>    
   </group>
 </testSuite>
