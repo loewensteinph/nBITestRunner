@@ -65,10 +65,10 @@ namespace NBITestVSTest
             var testsToRun = new List<string> { "SingleTest3" };
             var testrun = new NbiTestRun(testsToRun);
             _testsuites = testrun.RunTests();
-            Assert.AreEqual(ResultStatus.OK, testrun.ResultStatus);
+            Assert.AreEqual(ResultStatus.TEST_FAILED, testrun.ResultStatus);
 
             foreach (var result in _testsuites)
-                Assert.AreEqual(ResultStatus.OK, result.ResultStatus);
+                Assert.AreEqual(ResultStatus.TEST_FAILED, result.ResultStatus);
         }
         [TestMethod]
         [TestCategory("SingleTest")]
@@ -89,10 +89,10 @@ namespace NBITestVSTest
         {
             var testrun = new NbiTestRun();
             _testsuites = testrun.RunTests();
-            Assert.AreEqual(ResultStatus.OK, testrun.ResultStatus);
+            Assert.AreEqual(ResultStatus.TEST_FAILED, testrun.ResultStatus);
 
             foreach (var result in _testsuites)
-                Assert.AreEqual(ResultStatus.OK, result.ResultStatus);
+                Assert.AreEqual(ResultStatus.TEST_FAILED, result.ResultStatus);
         }
     }
 }

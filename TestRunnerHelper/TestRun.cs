@@ -163,23 +163,29 @@ namespace TestrunnerHelper
                         {
                             case 0:
                                 ResultStatus = ResultStatus.OK;
+                                testsuite.ResultStatus = ResultStatus.OK;
                                 break;
                             case -1:
                                 ResultStatus = ResultStatus.INVALID_ARG;
+                                testsuite.ResultStatus = ResultStatus.INVALID_ARG;
                                 break;
                             case -2:
                                 ResultStatus = ResultStatus.INVALID_ASSEMBLY;
+                                testsuite.ResultStatus = ResultStatus.INVALID_ASSEMBLY;
                                 break;
                             case -3:
                                 ResultStatus = ResultStatus.FIXTURE_NOT_FOUND;
+                                testsuite.ResultStatus = ResultStatus.FIXTURE_NOT_FOUND;
                                 break;
                             case -4:
                                 ResultStatus = ResultStatus.INVALID_TEST_FIXTURE;
+                                testsuite.ResultStatus = ResultStatus.INVALID_TEST_FIXTURE;
                                 break;
                             default:
                                 if (exitCode > 0)
                                     ResultStatus = ResultStatus.TEST_FAILED;
-                                break;
+                                    testsuite.ResultStatus = ResultStatus.TEST_FAILED;
+                                    break;
                         }
 
                             if (tr.testrun.testsuite.result.Equals("Inconclusive"))

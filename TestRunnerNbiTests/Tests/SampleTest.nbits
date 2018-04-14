@@ -106,7 +106,7 @@
       </assert>
     </test>
     <test name="SingleTest3">
-      <description>1 always equals 1</description>
+      <description>1 isnt equal -1</description>
       <category>Demo</category>
       <system-under-test>
         <execution>
