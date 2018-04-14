@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<testSuite name="SampleTests2" xmlns="http://NBi/TestSuite">
+  <settings>
+    <default apply-to="setup-cleanup">
+      <connectionString>Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True</connectionString>
+    </default>
+    <default apply-to="system-under-test">
+      <connectionString>Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True</connectionString>
+    </default>
+    <default apply-to="assert">
+      <connectionString>Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True</connectionString>
+    </default>
+    <csv-profile field-separator="|" record-separator="CrLf" />
+  </settings>
+  <group name="Report Tests">
+    <setup>
+      <sql-run name="Sample.sql" path="..\..\TestrunnerNbiTests\Tests\Setup\" />
+    </setup>
+    <test name="SimpleDemoTest2">
+      <description>1 always equals 1</description>
+      <category>Corep</category>
+      <system-under-test>
+        <execution>
+          <query>SELECT 1</query>
+        </execution>
+      </system-under-test>
+      <assert>
+        <equalTo>
+          <query>SELECT 1</query>
+        </equalTo>
+      </assert>
+    </test>
+  </group>
+</testSuite>
