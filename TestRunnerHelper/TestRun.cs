@@ -34,19 +34,21 @@ namespace TestrunnerHelper
         public static List<TestProject> TestProjectList { get; set; }
     }
 
-    public class TestRun
+    public class NbiTestRun
     {
-        public TestRun(List<string> testsToRun) : this()
+        public NbiTestRun(List<string> testsToRun) : this()
         {
             foreach (var testproject in TestRunConfig.TestProjectList)
             foreach (var testsuite in testproject.TestSuites)
                 testsuite.TestsToRun = testsToRun;
         }
 
-        public TestRun()
+        public NbiTestRun()
         {
             try
             {
+                TestRunConfig.TestProjectList = new List<TestProject>();
+
                 var cf = new ConfigurationFinder();
                 var result = cf.Find();
 
@@ -64,7 +66,16 @@ namespace TestrunnerHelper
                         var testSuite = new TestSuite(tp.RelativePath,
                             string.IsNullOrEmpty(ts.NBIconfigFile) ? tp.NBIconfigFile : ts.NBIconfigFile);
                         testSuite.TestSuiteName = ts.Name;
-                        testProject.TestSuites.Add(testSuite);
+
+                        // Check File existence
+                        if (testSuite.CheckFileExists())
+                        {
+                            testProject.TestSuites.Add(testSuite);
+                        }
+                        else
+                        {
+                            Debug.WriteLine(String.Format(@"TestSuite {0}\{1} not found! Check app.config or make sure testsuite exists! ",testSuite.PathToTestProject, testSuite.TestSuiteFulllName));
+                        }
                     }
                     TestRunConfig.TestProjectList.Add(testProject);
                 }
@@ -146,6 +157,8 @@ namespace TestrunnerHelper
 
                         var exitCode = process.ExitCode;
 
+                        TestResult tr = new TestResult(testsuite.ResultFullFilenameXML);
+
                         switch (exitCode)
                         {
                             case 0:
@@ -169,7 +182,12 @@ namespace TestrunnerHelper
                                 break;
                         }
 
-                        TestSuiteList.Add(testsuite);
+                            if (tr.testrun.testsuite.result.Equals("Inconclusive"))
+                            {
+                                ResultStatus = ResultStatus.INVALID_TEST_FIXTURE;
+                                testsuite.ResultStatus = ResultStatus.INVALID_TEST_FIXTURE;
+                            }
+                            TestSuiteList.Add(testsuite);
                     }
                 }
                 catch (Exception ex)
@@ -180,7 +198,6 @@ namespace TestrunnerHelper
                     testsuite.ResultStatus = ResultStatus.WRAPPER_ERROR;
                 }
             }
-
             return TestSuiteList;
         }
     }

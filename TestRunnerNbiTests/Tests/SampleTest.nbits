@@ -61,5 +61,63 @@
         </equalTo>
       </assert>
     </test>
+    <test name="SimpleDemoTestError">
+      <description>1 always isnt equal 3</description>
+      <category>Demo</category>
+      <system-under-test>
+        <execution>
+          <query>SELECT '1900-01-01'</query>
+        </execution>
+      </system-under-test>
+      <assert>
+        <equalTo>
+          <query>SELECT '1900-01-03'</query>
+        </equalTo>
+      </assert>
+    </test>    
+  </group>
+  <group name="SingleTests">
+    <test name="SingleTest">
+      <description>1 always equals 1</description>
+      <category>Demo</category>
+      <system-under-test>
+        <execution>
+          <query>SELECT 1.1</query>
+        </execution>
+      </system-under-test>
+      <assert>
+        <equalTo>
+          <query>SELECT 1.1</query>
+        </equalTo>
+      </assert>
+    </test>
+    <test name="SingleTest2">
+      <description>1 always equals 1</description>
+      <category>Demo</category>
+      <system-under-test>
+        <execution>
+          <query>SELECT 1.1</query>
+        </execution>
+      </system-under-test>
+      <assert>
+        <equalTo>
+          <query>SELECT 1.1</query>
+        </equalTo>
+      </assert>
+    </test>
+    <test name="SingleTest3">
+      <description>1 always equals 1</description>
+      <category>Demo</category>
+      <system-under-test>
+        <execution>
+          <query>SELECT 1</query>
+        </execution>
+      </system-under-test>
+      <assert>
+        <equalTo>
+          <query>SELECT -1</query>
+        </equalTo>
+      </assert>
+    </test>
   </group>
 </testSuite>

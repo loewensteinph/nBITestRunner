@@ -6,7 +6,7 @@ namespace TestRunnerConsole
     {
         private static void Main(string[] args)
         {
-            var testrun = new TestRun();
+            var testrun = new NbiTestRun();
             var testsuites = testrun.RunTests();
         }
     }
