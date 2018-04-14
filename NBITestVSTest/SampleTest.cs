@@ -23,18 +23,6 @@ namespace NBITestVSTest
         }
 
         [TestMethod]
-        [TestCategory("DBTests")]
-        public void TestnameFilterDemo()
-        {
-            var testsToRun = new List<string> {"CSVTest"};
-            var testrun = new NbiTestRun(testsToRun);
-            _testsuites = testrun.RunTests();
-            Assert.AreEqual(ResultStatus.OK, testrun.ResultStatus);
-
-            foreach (var result in _testsuites)
-                Assert.AreEqual(ResultStatus.OK, result.ResultStatus);
-        }
-        [TestMethod]
         [TestCategory("SingleTest")]
         public void SingleTest()
         {
