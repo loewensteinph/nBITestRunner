@@ -19,6 +19,6 @@ namespace TestrunnerHelper.Config
         }
 
         [ConfigurationProperty("testSuites", IsDefaultCollection = false)]
-        public TestSuitesCollection TestSuiteses => (TestSuitesCollection) base["testSuites"];
+        public TestSuitesCollection TestSuites => (TestSuitesCollection) base["testSuites"];
     }
 }

@@ -7,8 +7,18 @@ using System.Xml;
 
 namespace TestrunnerHelper
 {
+    /// <summary>
+    /// Handels modifactions at runtime 
+    /// modifies the NBiConfigFile according configured Testproject
+    /// to run the relevant .nbits files
+    /// </summary>
     public class NBiConfigFile
     {
+        /// <summary>
+        /// Constructor for the NBiConfigFile
+        /// </summary>
+        /// <param name="fileNameNBiConfigFile"></param>
+        /// <param name="pathToTestProject"></param>
         public NBiConfigFile(string fileNameNBiConfigFile, string pathToTestProject)
         {
             ExecutionPath = Directory.GetCurrentDirectory();
@@ -40,8 +50,11 @@ namespace TestrunnerHelper
         }
 
         /// <summary>
-        ///     Setzt in Test.config die aktuell auszuführende Test Suite
+        /// Modifies the NBiConfigFile according configured Testproject
+        /// to run the relevant .nbits files
         /// </summary>
+        /// <param name="currentTestSuite">current Testsuite</param>
+        /// <seealso cref="TestSuite"/>
         public void PrepareNunitConfig(TestSuite currentTestSuite)
         {
             try

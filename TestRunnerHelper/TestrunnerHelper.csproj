@@ -265,6 +265,7 @@
     <Compile Include="Config\TestSuiteConfigElement.cs" />
     <Compile Include="Config\TestProjectCollection.cs" />
     <Compile Include="Config\TestSuitesCollection.cs" />
+    <Compile Include="Log\Log.cs" />
     <Compile Include="NBiConfigFile.cs" />
     <Compile Include="NunitProjectFile.cs" />
     <Compile Include="PathHelper.cs" />
@@ -276,6 +277,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Log4Net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

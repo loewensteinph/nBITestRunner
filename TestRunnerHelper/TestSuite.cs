@@ -1,13 +1,16 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using TestrunnerHelper.Log;
 
 namespace TestrunnerHelper
 {
     public class TestSuite
     {
+        private static readonly ILog Log = LogFactory.GetLogger(typeof(TestSuite));
         public TestSuite(string pathToTestProject, string fileNameNBiConfigFile)
         {
             PathToTestProject = pathToTestProject;
@@ -15,6 +18,7 @@ namespace TestrunnerHelper
             TestsToRun = new List<string>();
             NBiConfigFile = new NBiConfigFile(fileNameNBiConfigFile, pathToTestProject);
             ISO_Date = DateTime.Now.ToString("_yyyy_MM_dd_HH_mm_ss_ffff");
+            CheckResultFolderExists();
         }
 
         public string ExecutionPath { get; set; }
@@ -40,9 +44,11 @@ namespace TestrunnerHelper
 
         public string ResultFilenameHTML => Path.ChangeExtension(TestSuiteName + ISO_Date, "html");
 
+        public string ResultFullFilenameHTML => Path.GetFullPath(Path.Combine(Path.Combine(ExecutionPath, "TestResults"), ResultFilenameHTML));
+
         public string ResultFilenameXML => Path.ChangeExtension(TestSuiteName + ISO_Date, "xml");
 
-        public string ResultFullFilenameXML => Path.GetFullPath(Path.Combine(ExecutionPath, ResultFilenameXML));
+        public string ResultFullFilenameXML => Path.GetFullPath(Path.Combine(Path.Combine(ExecutionPath, "TestResults"), ResultFilenameXML));
 
         private string FormatTestsToRun()
         {
@@ -68,10 +74,18 @@ namespace TestrunnerHelper
             var FullNameNBiConfigFile =
                 Directory.GetFiles(searchPatch, TestSuiteFulllName, SearchOption.AllDirectories).FirstOrDefault(path => !path.Contains(@"\bin\"));
 
-            if(FullNameNBiConfigFile != null)
-            return true;
+            if (FullNameNBiConfigFile != null)
+                return true;
 
             return false;
+        }
+
+        public void CheckResultFolderExists()
+        {
+            if (!Directory.Exists(Path.Combine(ExecutionPath, "TestResults")))
+            {
+                Directory.CreateDirectory(Path.Combine(ExecutionPath, "TestResults"));
+            }
         }
     }
 }

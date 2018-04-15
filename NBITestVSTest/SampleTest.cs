@@ -17,8 +17,8 @@ namespace NBITestVSTest
             foreach (var result in _testsuites)
             {
                 TestContext.WriteLine("Result: " + result.TestSuiteName);
-                TestContext.AddResultFile(result.ResultFilenameHTML);
-                TestContext.AddResultFile(result.ResultFilenameXML);
+                TestContext.AddResultFile(result.ResultFullFilenameHTML);
+                TestContext.AddResultFile(result.ResultFullFilenameXML);
             }
         }
 

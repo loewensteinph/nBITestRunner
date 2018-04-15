@@ -6,8 +6,16 @@ using System.Xml;
 
 namespace TestrunnerHelper
 {
+    /// <summary>
+    /// Handels modifactions at runtime 
+    /// modifies the nunit file
+    /// </summary>
     public class NunitProjectFile
     {
+        /// <summary>
+        /// Constructor Method
+        /// </summary>
+        /// <param name="newAppBase"></param>
         public NunitProjectFile(string newAppBase)
         {
             NewAppBase = newAppBase;
@@ -17,8 +25,9 @@ namespace TestrunnerHelper
         public string FullNameNunitProjectFilename { get; set; }
 
         /// <summary>
-        ///     Setzt in Test.nunit den Root Pfad des Nunit Projektes
+        /// Sets appabse and config file name accordingly
         /// </summary>
+        /// <param name="relativePathToNBiConfigFile"></param>
         public void PrepareNunitProject(string relativePathToNBiConfigFile)
         {
             try
@@ -51,7 +60,7 @@ namespace TestrunnerHelper
             }
             catch (Exception ex)
             {
-                Debug.Write("NUnit Config File konnte nicht angepasst werden: " + ex.Message);
+                Debug.Write("There wa a problem modifying the NUnit Config File: " + ex.Message);
             }
         }
     }
